@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Convertidor de temperatura entre grados Celsius, Fahrenheit y Kelvin, con letra grande y diseño accesible.">
+  <title>Convertidor de Temperatura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <h1 class="site-title">
+      <span class="site-title-icon" aria-hidden="true">🌡️</span>
+      Convertidor de Temperatura
+    </h1>
+    <button type="button" id="themeToggle" class="theme-toggle" aria-label="Cambiar a modo oscuro">🌙</button>
+  </header>
+
+  <main class="container">
+
+    <!-- Sección de entrada -->
+    <section class="input-section" aria-labelledby="inputHeading">
+      <h2 id="inputHeading" class="visually-hidden">Temperatura a convertir</h2>
+
+      <label class="input-label" for="tempInput">Temperatura</label>
+
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="tempInput"
+          inputmode="decimal"
+          autocomplete="off"
+          placeholder="Escribe el número aquí"
+          aria-describedby="inputHelp"
+        >
+      </div>
+
+      <p id="inputHelp" class="help-text">💡 Escribe un número y elige la unidad para ver el resultado al instante.</p>
+
+      <p id="errorMsg" class="error-message" role="alert" hidden></p>
+
+      <fieldset class="unit-selector">
+        <legend class="unit-selector-legend">¿En qué unidad está tu número?</legend>
+        <div class="unit-buttons">
+          <button type="button" class="unit-btn is-selected" data-unit="C" aria-pressed="true">
+            Grados Celsius <span class="unit-symbol">°C</span>
+          </button>
+          <button type="button" class="unit-btn" data-unit="F" aria-pressed="false">
+            Grados Fahrenheit <span class="unit-symbol">°F</span>
+          </button>
+          <button type="button" class="unit-btn" data-unit="K" aria-pressed="false">
+            Kelvin <span class="unit-symbol">K</span>
+          </button>
+        </div>
+      </fieldset>
+
+      <button type="button" id="clearBtn" class="clear-btn">🧹 Limpiar</button>
+    </section>
+
+    <!-- Sección de resultados -->
+    <section id="results" class="results" aria-live="polite" aria-atomic="true" aria-label="Resultados de la conversión">
+      <article class="result-card" data-unit="C" hidden>
+        <h2 class="result-title">Grados Celsius</h2>
+        <p class="result-value" data-result>—</p>
+        <p class="result-formula" data-formula></p>
+        <button type="button" class="voice-btn" data-voice="C" aria-label="Escuchar el resultado en grados Celsius">🔊 Escuchar</button>
+        <button type="button" class="swap-btn" aria-label="Usar este resultado como punto de partida">⇄ Usar como punto de partida</button>
+      </article>
+
+      <article class="result-card" data-unit="F" hidden>
+        <h2 class="result-title">Grados Fahrenheit</h2>
+        <p class="result-value" data-result>—</p>
+        <p class="result-formula" data-formula></p>
+        <button type="button" class="voice-btn" data-voice="F" aria-label="Escuchar el resultado en grados Fahrenheit">🔊 Escuchar</button>
+        <button type="button" class="swap-btn" aria-label="Usar este resultado como punto de partida">⇄ Usar como punto de partida</button>
+      </article>
+
+      <article class="result-card" data-unit="K" hidden>
+        <h2 class="result-title">Kelvin</h2>
+        <p class="result-value" data-result>—</p>
+        <p class="result-formula" data-formula></p>
+        <button type="button" class="voice-btn" data-voice="K" aria-label="Escuchar el resultado en kelvin">🔊 Escuchar</button>
+        <button type="button" class="swap-btn" aria-label="Usar este resultado como punto de partida">⇄ Usar como punto de partida</button>
+      </article>
+    </section>
+
+    <p class="results-hint">💡 Toca un resultado para usarlo como punto de partida.</p>
+
+    <!-- Teclado numérico táctil (ayuda en tablet y para manos con menos precisión) -->
+    <section class="numpad-section" aria-label="Teclado numérico">
+      <div class="numpad">
+        <button type="button" data-key="7" aria-label="Siete">7</button>
+        <button type="button" data-key="8" aria-label="Ocho">8</button>
+        <button type="button" data-key="9" aria-label="Nueve">9</button>
+        <button type="button" data-key="4" aria-label="Cuatro">4</button>
+        <button type="button" data-key="5" aria-label="Cinco">5</button>
+        <button type="button" data-key="6" aria-label="Seis">6</button>
+        <button type="button" data-key="1" aria-label="Uno">1</button>
+        <button type="button" data-key="2" aria-label="Dos">2</button>
+        <button type="button" data-key="3" aria-label="Tres">3</button>
+        <button type="button" data-key="." aria-label="Punto decimal">.</button>
+        <button type="button" data-key="0" aria-label="Cero">0</button>
+        <button type="button" data-key="backspace" aria-label="Borrar último número">⌫</button>
+        <button type="button" data-key="minus" class="numpad-wide" aria-label="Cambiar a número negativo o positivo">−</button>
+      </div>
+    </section>
+
+    <!-- Temperaturas de referencia -->
+    <section class="reference" aria-labelledby="referenceHeading">
+      <h2 id="referenceHeading" class="reference-title">Temperaturas de referencia</h2>
+      <p class="reference-hint">Toca el valor que tengas para usarlo como punto de partida.</p>
+      <div class="table-wrap">
+        <table class="reference-table">
+          <thead>
+            <tr>
+              <th scope="col">Celsius (°C)</th>
+              <th scope="col">Fahrenheit (°F)</th>
+              <th scope="col">Kelvin (K)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><button type="button" data-value="-273.15" data-unit="C" aria-label="Usar -273.15 grados Celsius, el cero absoluto">−273.15</button></td>
+              <td><button type="button" data-value="-459.67" data-unit="F" aria-label="Usar -459.67 grados Fahrenheit, el cero absoluto">−459.67</button></td>
+              <td><button type="button" data-value="0" data-unit="K" aria-label="Usar 0 kelvin, el cero absoluto">0</button></td>
+            </tr>
+            <tr>
+              <td><button type="button" data-value="0" data-unit="C" aria-label="Usar 0 grados Celsius, el agua se congela">0</button></td>
+              <td><button type="button" data-value="32" data-unit="F" aria-label="Usar 32 grados Fahrenheit, el agua se congela">32</button></td>
+              <td><button type="button" data-value="273.15" data-unit="K" aria-label="Usar 273.15 kelvin, el agua se congela">273.15</button></td>
+            </tr>
+            <tr>
+              <td><button type="button" data-value="-10" data-unit="C" aria-label="Usar -10 grados Celsius, día frío de invierno">−10</button></td>
+              <td><button type="button" data-value="14" data-unit="F" aria-label="Usar 14 grados Fahrenheit, día frío de invierno">14</button></td>
+              <td><button type="button" data-value="263.15" data-unit="K" aria-label="Usar 263.15 kelvin, día frío de invierno">263.15</button></td>
+            </tr>
+            <tr>
+              <td><button type="button" data-value="21" data-unit="C" aria-label="Usar 21 grados Celsius, temperatura de una habitación">21</button></td>
+              <td><button type="button" data-value="69.8" data-unit="F" aria-label="Usar 69.8 grados Fahrenheit, temperatura de una habitación">69.8</button></td>
+              <td><button type="button" data-value="294.15" data-unit="K" aria-label="Usar 294.15 kelvin, temperatura de una habitación">294.15</button></td>
+            </tr>
+            <tr>
+              <td><button type="button" data-value="37" data-unit="C" aria-label="Usar 37 grados Celsius, temperatura corporal normal">37</button></td>
+              <td><button type="button" data-value="98.6" data-unit="F" aria-label="Usar 98.6 grados Fahrenheit, temperatura corporal normal">98.6</button></td>
+              <td><button type="button" data-value="310.15" data-unit="K" aria-label="Usar 310.15 kelvin, temperatura corporal normal">310.15</button></td>
+            </tr>
+            <tr>
+              <td><button type="button" data-value="38.5" data-unit="C" aria-label="Usar 38.5 grados Celsius, fiebre">38.5</button></td>
+              <td><button type="button" data-value="101.3" data-unit="F" aria-label="Usar 101.3 grados Fahrenheit, fiebre">101.3</button></td>
+              <td><button type="button" data-value="311.65" data-unit="K" aria-label="Usar 311.65 kelvin, fiebre">311.65</button></td>
+            </tr>
+            <tr>
+              <td><button type="button" data-value="35" data-unit="C" aria-label="Usar 35 grados Celsius, día caluroso de verano">35</button></td>
+              <td><button type="button" data-value="95" data-unit="F" aria-label="Usar 95 grados Fahrenheit, día caluroso de verano">95</button></td>
+              <td><button type="button" data-value="308.15" data-unit="K" aria-label="Usar 308.15 kelvin, día caluroso de verano">308.15</button></td>
+            </tr>
+            <tr>
+              <td><button type="button" data-value="100" data-unit="C" aria-label="Usar 100 grados Celsius, el agua hierve">100</button></td>
+              <td><button type="button" data-value="212" data-unit="F" aria-label="Usar 212 grados Fahrenheit, el agua hierve">212</button></td>
+              <td><button type="button" data-value="373.15" data-unit="K" aria-label="Usar 373.15 kelvin, el agua hierve">373.15</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Puedes usar el teclado de la pantalla o el de tu equipo. Toca un resultado o un valor de referencia para empezar desde ahí. Pulsa <strong>Escuchar</strong> para oír el resultado.</p>
+  </footer>
+
+  <noscript>
+    <p style="font-size:1.25rem; text-align:center; padding:2rem;">Este convertidor necesita JavaScript para funcionar.</p>
+  </noscript>
+
+  <script src="app.js"></script>
+</body>
+</html>
