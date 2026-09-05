@@ -34,7 +34,6 @@
     cards: Array.from(document.querySelectorAll(".result-card")),
     voiceBtns: Array.from(document.querySelectorAll(".voice-btn")),
     themeToggle: document.getElementById("themeToggle"),
-    numpad: document.querySelector(".numpad"),
   };
 
   let selectedUnit = "C";
@@ -200,28 +199,6 @@
   dom.clearBtn.addEventListener("click", () => {
     dom.input.value = "";
     render();
-    dom.input.focus();
-  });
-
-  // Teclado numérico táctil
-  dom.numpad.addEventListener("click", (event) => {
-    const btn = event.target.closest("button[data-key]");
-    if (!btn) return;
-    const key = btn.dataset.key;
-    let value = dom.input.value;
-
-    if (key === "backspace") {
-      value = value.slice(0, -1);
-    } else if (key === "minus") {
-      value = value.startsWith("-") ? value.slice(1) : "-" + value;
-    } else if (key === ".") {
-      if (!value.includes(".")) value += ".";
-    } else {
-      if (value.length < 12) value += key;
-    }
-
-    dom.input.value = value;
-    dom.input.dispatchEvent(new Event("input", { bubbles: true }));
     dom.input.focus();
   });
 

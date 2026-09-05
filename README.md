@@ -31,7 +31,7 @@ La app se construyó pensando en **personas mayores**, con estas decisiones clav
 | Ver mal de cerca | Letra grande (texto ≥ 20px, resultados de 40–56px) |
 | Distinguir colores | Alto contraste (cumple WCAG AA) |
 | Pulso menos preciso | Botones táctiles enormes (≥ 48px) |
-| Dificultad con teclados pequeños | Teclado numérico en pantalla, botones de un toque |
+| Dificultad con teclados pequeños | Entrada simple de un solo campo y botones de un toque |
 | Mala vista / cansancio visual | 🔊 Botón "Escuchar" que lee el resultado en voz alta |
 | Confusión con pantallas cargadas | Una sola tarea por pantalla, nada oculto en menús |
 | Sensibilidad a parpadeos | Sin animaciones molestas (respeta `prefers-reduced-motion`) |
@@ -44,7 +44,7 @@ La app se construyó pensando en **personas mayores**, con estas decisiones clav
 - ✅ **Conversión en tiempo real**: escribe y los resultados aparecen al instante.
 - ✅ **Las 6 conversiones**: °C↔°F, °C↔K y °F↔K.
 - ✅ **Selector de unidad** con 3 botones grandes.
-- ✅ **Teclado numérico táctil** (para tablet o para no usar el teclado físico).
+- ✅ **Entrada sencilla**: un solo campo para escribir el número, sin teclados extra.
 - ✅ **Botón "Usar como punto de partida"**: convierte al revés con un toque.
 - ✅ **Tabla de temperaturas de referencia**: fiebre, congelación, etc. Toca un valor y se carga solo.
 - ✅ **Modo claro / oscuro** con preferencia recordada.
@@ -155,6 +155,15 @@ y *"de Celsius a cualquier unidad"*.
 - **Etiquetas y roles ARIA** para lectores de pantalla.
 - Texto de resultados anunciado automáticamente (`aria-live`).
 - Respeto de `prefers-reduced-motion` (sin animaciones para quien las evita).
+
+---
+
+## 👩‍💻 Autoría
+
+**María Alejandra Garzón** — diseño, contenido y dirección del proyecto.
+
+> 🤖 *Proyecto asistido por inteligencia artificial (IA): el código y la estructura
+> se desarrollaron con ayuda de un asistente de IA bajo la supervisión de la autora.*
 
 ---
 

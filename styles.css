@@ -384,50 +384,7 @@ input:focus-visible {
     opacity: 1;
     transform: scale(1);
   }
-}
-
-/* ---------- Teclado numérico ---------- */
-.numpad-section {
-  background: var(--card-bg);
-  border: 2px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 1.5rem;
-}
-
-.numpad {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.8rem;
-  max-width: 420px;
-  margin: 0 auto;
-}
-
-.numpad button {
-  min-height: 68px;
-  font-size: 1.7rem;
-  font-weight: 700;
-  border-radius: 14px;
-  background: var(--bg);
-  border: 3px solid var(--border);
-  transition: background-color 0.15s ease, transform 0.1s ease;
-}
-
-.numpad button:hover {
-  border-color: var(--accent);
-}
-
-.numpad button:active {
-  transform: scale(0.95);
-  background: var(--accent);
-  color: var(--accent-contrast);
-}
-
-.numpad .numpad-wide {
-  grid-column: 1 / -1;
-}
-
-/* ---------- Temperaturas de referencia ---------- */
+}/* ---------- Temperaturas de referencia ---------- */
 .reference {
   background: var(--card-bg);
   border: 2px solid var(--border);
@@ -502,6 +459,12 @@ input:focus-visible {
   max-width: 900px;
   margin: 0 auto;
   width: 100%;
+}
+
+.author-credit {
+  margin-top: 0.75rem;
+  font-size: 1.05rem;
+  color: var(--text);
 }
 
 /* ---------- Responsive: pantallas medianas y grandes ---------- */
